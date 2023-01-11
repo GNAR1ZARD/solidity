@@ -1,35 +1,25 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.4.22 <0.9.0;
+pragma solidity ^0.8.17;
 
-contract TruffleTutorial {
-  address public owner = msg.sender;
-  string public message;
+contract test{
 
-  // this function runs when the contract is deployed
-  constructor() public {
-    // set initial message
-    message = "Hello World!";
-  }
+    //state variable
+    string public message;
 
-  modifier ownerOnly() {
-    require(
-      msg.sender == owner,
-      "This function is restricted to the contract's owner"
-    );
-    _;
-  }
+    //constructor is an optional function that is only called once when the contract is deployed 
+    constructor(){
+        message="Hello World";
+    }
 
-  // function that only contract owner can run, to set a new message
-  function setMessage(string memory _message) 
-    public 
-    ownerOnly 
-    returns(string memory) 
-  {
-    // message must not be empty
-    require(bytes(_message).length > 0);
+    //sets message
+    //memory stores input from user
+    function setMessage(string memory input) public returns(string memory){
+    
+        //message must not be empty
+        require(bytes(input).length>0);
 
-    // set new message
-    message = _message;
-    return message;
+        //set new message
+        message=input;
+        return message;
   }
 }

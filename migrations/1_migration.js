@@ -1,5 +1,5 @@
-const TruffleTutorial = artifacts.require("TruffleTutorial");
+const test = artifacts.require("test");
 
 module.exports = function(deployer) {
-  deployer.deploy(TruffleTutorial);
+  deployer.deploy(test);
 };
