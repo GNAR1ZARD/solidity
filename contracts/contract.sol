@@ -1,22 +1,26 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.17;
 
-contract EtherWallet {
-    address payable public owner;
+contract test{//wallet
+    // //address variable that is public and can have funds deposited 
+    // address payable public owner;
 
-    constructor() {
-        owner = payable(msg.sender);
-    }
+    // constructor(){
+    //     owner=payable(msg.sender);
+    // }
 
-    receive() external payable {}
+    //will receive any eth sent to the contract
+    function recieve() external payable{}
 
-    function withdraw(uint _amount) external {
-        require(msg.sender == owner, "caller is not owner");
-        payable(msg.sender).transfer(_amount);
-    }
-
-    function getBalance() external view returns (uint) {
+    //returns the balance
+    function getBalance() external view returns (uint){
         return address(this).balance;
     }
-}
 
+    // function withdraw(uint _amount) external {
+    //     require(msg.sender == owner, "caller is not owner");
+    //     payable(msg.sender).transfer(_amount);
+    // }
+}
+//let accounts = await web3.eth.getAccounts()
+//contract.recieve.sendTransaction({from: accounts[0], value: 2000000});
