@@ -1,25 +1,22 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.17;
 
-contract test{
+contract EtherWallet {
+    address payable public owner;
 
-    //state variable
-    string public message;
-
-    //constructor is an optional function that is only called once when the contract is deployed 
-    constructor(){
-        message="Hello World";
+    constructor() {
+        owner = payable(msg.sender);
     }
 
-    //sets message
-    //memory stores input from user
-    function setMessage(string memory input) public returns(string memory){
-    
-        //message must not be empty
-        require(bytes(input).length>0);
+    receive() external payable {}
 
-        //set new message
-        message=input;
-        return message;
-  }
+    function withdraw(uint _amount) external {
+        require(msg.sender == owner, "caller is not owner");
+        payable(msg.sender).transfer(_amount);
+    }
+
+    function getBalance() external view returns (uint) {
+        return address(this).balance;
+    }
 }
+
