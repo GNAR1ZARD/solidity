@@ -17,10 +17,14 @@ contract test{//wallet
         return address(this).balance;
     }
 
-    // function withdraw(uint _amount) external {
-    //     require(msg.sender == owner, "caller is not owner");
-    //     payable(msg.sender).transfer(_amount);
-    // }
+    // Function to transfer Ether from this contract to address from input
+    function transfer(address payable _to, uint _amount) external{
+        // Note that "to" is declared as payable
+        (bool success, ) = _to.call{value: _amount}("");
+        require(success, "Failed to send Ether");
+    }
 }
+//let contract=await test.deployed()
 //let accounts = await web3.eth.getAccounts()
-//contract.recieve.sendTransaction({from: accounts[0], value: 2000000});
+//contract.recieve.sendTransaction({from: accounts[0], value: 2000000})
+//await contract.transfer(accounts[1],100000)
