@@ -6,6 +6,8 @@ contract test{//wallet
     address payable public owner;
 
     //initalizing ownership
+    //owner is set to msg.sender when contract is deployed
+    //msg.sender is the address that deploys the contract
     constructor(){
         owner=payable(msg.sender);
     }
